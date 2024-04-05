@@ -1,0 +1,614 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MediEthiCare </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'user/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+    <style>
+        .custom-modal-content {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .custom-modal-body {
+            padding: 30px;
+        }
+        
+        .custom-form-label {
+            color: #007bff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .custom-form-control {
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 16px;
+            color: #495057;
+        }
+        
+        .custom-btn-primary {
+            border-radius: 15px;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 16px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .custom-btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Animation for modal */
+        .custom-modal.fade .custom-modal-dialog {
+            transform: scale(0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .custom-modal.fade.show .custom-modal-dialog {
+            transform: scale(1);
+        }
+
+
+
+        .equipment-card {
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+        
+        .equipment-card .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333333;
+        }
+        
+        .equipment-card .list-group {
+            padding-left: 0;
+        }
+        
+        .equipment-card .list-group-item {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .equipment-card .list-group-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .equipment-card .list-group-item::before {
+            content: "\2022"; /* Bullet point */
+            color: #007bff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .equipment-card .list-group-item:hover {
+            background-color: #e0e0e0;
+            border-color: #cfd8dc;
+        }
+        
+        .equipment-card .list-group-item.active {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+        }
+        
+        .equipment-card .list-group-item.active::before {
+            color: #ffffff;
+        }
+        
+        .equipment-card .list-group-item.active:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        /* Additional styles */
+        
+        .equipment-card .list-group-item p {
+            margin-bottom: 5px;
+        }
+        
+        .equipment-card .list-group-item span {
+            color: #6c757d;
+        }
+        
+        .equipment-card .list-group-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        /* Additional styles to reach approximately 1000 lines */
+        
+        .equipment-card .list-group-item.large {
+            padding: 20px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+        }
+        
+        .equipment-card .list-group-item.large::before {
+            font-size: 1.2rem;
+        }
+        
+        .equipment-card .list-group-item.large:hover {
+            background-color: #dcdcdc;
+            border-color: #b0b0b0;
+        }
+        
+        .equipment-card .list-group-item.large.active {
+            background-color: #555555;
+            color: #ffffff;
+            border-color: #555555;
+        }
+        
+        .equipment-card .list-group-item.large.active::before {
+            color: #ffffff;
+        }
+        
+        /* Additional styles to reach approximately 1000 lines */
+        
+        .equipment-card .list-group-item.xlarge {
+            padding: 25px;
+            font-size: 1.5rem;
+            border-radius: 15px;
+        }
+        
+        .equipment-card .list-group-item.xlarge::before {
+            font-size: 1.5rem;
+        }
+        
+        .equipment-card .list-group-item.xlarge:hover {
+            background-color: #d3d3d3;
+            border-color: #a9a9a9;
+        }
+        
+        .equipment-card .list-group-item.xlarge.active {
+            background-color: #444444;
+            color: #ffffff;
+            border-color: #444444;
+        }
+        
+        .equipment-card .list-group-item.xlarge.active::before {
+            color: #ffffff;
+        }
+        
+        /* Additional styles to reach approximately 1000 lines */
+        
+        .equipment-card .list-group-item.xxlarge {
+            padding: 30px;
+            font-size: 1.8rem;
+            border-radius: 20px;
+        }
+        
+        .equipment-card .list-group-item.xxlarge::before {
+            font-size: 1.8rem;
+        }
+        
+        .equipment-card .list-group-item.xxlarge:hover {
+            background-color: #cccccc;
+            border-color: #999999;
+        }
+        
+        .equipment-card .list-group-item.xxlarge.active {
+            background-color: #333333;
+            color: #ffffff;
+            border-color: #333333;
+        }
+        
+        .equipment-card .list-group-item.xxlarge.active::before {
+            color: #ffffff;
+        }
+        .shoppingbasket {
+            width:40px;
+            height:40px;
+            background-color:#000;
+            position:absolute;
+            top:10px;
+        }
+        .basketitems {
+            color:#fff;
+            font-size:80%;
+            background-color:#e74c3c;
+            position:absolute;
+            top:50%;
+            left:50%;
+            -webkit-transform:translate(-50%,-90%);
+            -moz-transform:translate(-50%,-90%);
+            transform:translate(-50%,-90%);
+            padding:0 12%;
+            border-radius:1000px;
+        }
+        .shoppingbasket .top {
+            width:60%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:25%;
+            left:50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .shoppingbasket .bottom {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            bottom:25%;
+            left:50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .shoppingbasket .left {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:45%;
+            left:1%;
+            -webkit-transform: rotate(80deg);
+            -moz-transform: translateX(80deg);
+            transform: translateX(80deg);
+        }
+        .shoppingbasket .right {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:45%;
+            right:1%;
+            -webkit-transform: rotate(-80deg);
+            -moz-transform: translateX(-80deg);
+            transform: translateX(-80deg);
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    
+    
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>CSM</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <a href="{% url 'cart' %}">
+                        <div class="shoppingbasket"> 
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <div class="basketitems">{{cart_count}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    
+    
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="{% url 'viewhospital' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>MediEthiCare </h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'viewhospital' %}" class="nav-item nav-link active">Dashboard</a>
+                <a href="{% url 'pricing' %}" class="nav-item nav-link">Free Delivery&Cashback</a>
+                <a href="{% url 'faqs' %}" class="nav-item nav-link">FAQ</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My account</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="{% url 'userprofile' %}" class="dropdown-item">My profile</a>
+                        <a href="{% url 'myappointments' %}" class="dropdown-item">My Appointments</a>
+                        <a href="{% url 'my_orders' %}" class="dropdown-item">My Orders</a>
+                        <a href="{% url 'medicine_recommendation' %}" class="dropdown-item">Find Alternative Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                Logout<i class="fa fa-arrow-right ms-3"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    
+    <div class="container">
+        <h2 class="mb-4 text-center text-primary m-5">EQUIPMENT AVAILABILITY</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="equipment-card">
+                    <h5 class="card-title">Intensive Care Unit (ICU)</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Ventilators</li>
+                        <li class="list-group-item">Cardiac monitors</li>
+                        <li class="list-group-item">Infusion pumps</li>
+                        <li class="list-group-item">Hemodynamic monitoring equipment</li>
+                        <li class="list-group-item">ICU beds</li>
+                        <li class="list-group-item">Portable X-ray machines</li>
+                        <li class="list-group-item">Central monitoring system</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="equipment-card">
+                    <h5 class="card-title">Emergency Department (ER)</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Crash cart</li>
+                        <li class="list-group-item">Defibrillator</li>
+                        <li class="list-group-item">EKG machine</li>
+                        <li class="list-group-item">Suction machine</li>
+                        <li class="list-group-item">Oxygen therapy equipment</li>
+                        <li class="list-group-item">Patient monitoring devices</li>
+                        <li class="list-group-item">Ambulance stretchers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="equipment-card">
+                    <h5 class="card-title">Operating Room (OR)</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Surgical tables</li>
+                        <li class="list-group-item">Anesthesia machines</li>
+                        <li class="list-group-item">Operating lights</li>
+                        <li class="list-group-item">Electrosurgical units</li>
+                        <li class="list-group-item">C-arm fluoroscopy machines</li>
+                        <li class="list-group-item">Surgical instruments</li>
+                        <li class="list-group-item">Sterilization equipment</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="equipment-card">
+                    <h5 class="card-title">Laboratory</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Microscopes</li>
+                        <li class="list-group-item">Centrifuges</li>
+                        <li class="list-group-item">Autoclaves</li>
+                        <li class="list-group-item">Hematology analyzers</li>
+                        <li class="list-group-item">Chemistry analyzers</li>
+                        <li class="list-group-item">Microbiology equipment</li>
+                        <li class="list-group-item">Blood bank equipment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Header Start -->
+    <!-- HTML -->
+    <div class="modal fade" id="emergencyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+            <div class="modal-content custom-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Emergency Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body custom-modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="patientName" class="custom-form-label">Patient Name</label>
+                            <input type="text" class="form-control custom-form-control" id="patientName" placeholder="Enter patient name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactNumber" class="custom-form-label">Contact Number</label>
+                            <input type="text" class="form-control custom-form-control" id="contactNumber" placeholder="Enter contact number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="custom-form-label">Location</label>
+                            <textarea class="form-control custom-form-control" id="location" rows="2" placeholder="Enter location"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn custom-btn-primary">Book Ambulance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Address</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Nambur</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 000000</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>CSM</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Services</h5>
+                    <a class="btn btn-link" href="">Cardiology</a>
+                    <a class="btn btn-link" href="">Pulmonary</a>
+                    <a class="btn btn-link" href="">Neurology</a>
+                    <a class="btn btn-link" href="">Orthopedics</a>
+                    <a class="btn btn-link" href="">Laboratory</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Quick Links</h5>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Newsletter</h5>
+                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    </br>
+                    Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+<script>
+    $(document).ready(function () {
+        $('.btn-danger').click(function () {
+            $('#emergencyModal').modal('show');
+        });
+    });
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'user/lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'user/js/main.js' %}"></script>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>
+                swal({
+                    title: "Warning!",
+                    text: "{{ message }}",
+                    icon: "warning",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <script>
+                swal({
+                    title: "Info :)",
+                    text: "{{ message }}",
+                    icon: "info",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <script>
+                swal({
+                    title: "Error :)",
+                    text: "{{ message }}",
+                    icon: "error",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <script>
+                swal({
+                    title: "Success :)",
+                    text: "{{ message }}",
+                    icon: "success",
+                    button: "OK",
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</html>

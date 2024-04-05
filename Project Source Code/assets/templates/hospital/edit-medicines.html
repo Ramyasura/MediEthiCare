@@ -1,0 +1,445 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    
+    <title>Dashboard</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    
+    <!-- Favicons -->
+    <link href="{% static 'hospital/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'hospital/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'hospital/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+    
+    
+    <!-- Template Main CSS File -->
+    <link href="{% static 'hospital/css/style.css' %}" rel="stylesheet">
+    
+    <style>
+        .hospital-form {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transition:box-shadow 0.4s ease , transform 0.9s ease;
+        }
+        
+        .hospital-form:hover{
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+            transform:translateY(-4px)
+        }
+        
+        .floating-image {
+            position: absolute;
+            top: -35px;
+            right: 20px;
+            width: 100px;
+            height:100px;
+            z-index:999;
+            border-radius: 50%; 
+            box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.9); 
+        }
+        
+        
+        h2 {
+            font-size: 34px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: #436850;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        
+        
+    </style>
+</head>
+
+<body>
+    
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="admin-index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">MediEthiCare</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+        
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+                    
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="{% static 'hospital/img/logo.png' %}" alt="">
+                        
+                        <span class="d-none d-md-block dropdown-toggle ps-2">MediEthiCare</span>
+                    </a><!-- End Profile Iamge Icon -->
+                    
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'user_logout' %}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                        
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+                
+            </ul>
+        </nav><!-- End Icons Navigation -->
+        
+    </header><!-- End Header -->
+    
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'hospital_dashboard' %}">
+                    <img src="{% static 'hospital/img/m3.png' %}" class="mx-1" alt="">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <img src="{% static 'hospital/img/m2.png' %}" class="mx-1" alt=""><span>Medicine Management</span></i></i>
+                </a>
+                <ul id="components-nav" class="nav-content show" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'medicines' %}" >
+                            <img src="{% static 'hospital/img/m1.png' %}" class="mx-1" alt="">
+                            <span>Add Medicines</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'view_medicines' %}" class="active">
+                            <img src="{% static 'hospital/img/m8.png' %}" class="mx-1" alt="">
+                            <span>View Medicines</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End parking Management Nav -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <img src="{% static 'hospital/img/m4.png' %}" class="mx-1" alt=""><span>Hospital Servicies</span></i></i>
+                </a>
+                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'services' %}">
+                            <img src="{% static 'hospital/img/m5.png' %}" class="mx-1" alt=""><span>Add Servicies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'viewservices' %}">
+                            <img src="{% static 'hospital/img/m16.png' %}" class="mx-1" alt=""><span>View Servicies</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-navbed2" data-bs-toggle="collapse" href="#">
+                    <img src="{% static 'hospital/img/m9.png' %}" class="mx-1" alt=""><span>Bed Management</span></i></i>
+                </a>
+                <ul id="forms-navbed2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'bed' %}">
+                            <img src="{% static 'hospital/img/m10.png' %}" class="mx-1" alt=""><span>Update Beds Availability</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'view_bed' %}">
+                            <img src="{% static 'hospital/img/m15.png' %}" class="mx-1" alt=""><span>View Beds</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav2" data-bs-toggle="collapse" href="#">
+                    <img src="{% static 'hospital/img/m11.png' %}" class="mx-1" alt=""><span>Appointments Management</span></i></i>
+                </a>
+                <ul id="forms-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'list_doct' %}">
+                            <img src="{% static 'hospital/img/m12.png' %}" class="mx-1" alt=""><span>Schedule Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'pendingAppointments' %}">
+                            <img src="{% static 'hospital/img/m13.png' %}" class="mx-1" alt=""><span>Pending Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'viewAppointments' %}">
+                            <img src="{% static 'hospital/img/m14.png' %}" class="mx-1" alt=""><span>View Appointments</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav4" data-bs-toggle="collapse" href="#">
+                    <img src="{% static 'hospital/img/o1.png' %}" class="mx-1" alt=""><span>Orders Management</span></i></i>
+                </a>
+                <ul id="forms-nav4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'view_orders' %}">
+                            <img src="{% static 'hospital/img/o2.png' %}" class="mx-1" alt=""><span>View Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'all_orders' %}">
+                            <img src="{% static 'hospital/img/o3.png' %}" class="mx-1" alt=""><span>All Orders</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside><!-- End Sidebar-->
+    
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Edit Medicines</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Home</a></li>
+                    <li class="breadcrumb-item active">Edit Medicines</li>
+                </ol>
+            </nav>
+        </div>
+        <section class="section dashboard">
+            <form class="hospital-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2 class="text-center mb-4">Hospital Medicine Details</h2>
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="medicineName">Medicine Name</label>
+                                    <input type="text" class="form-control" id="medicineName" name="medicineName" value="{{ medicine.medicine_name }}" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="medicineType">Medicine Type</label>
+                                    <select class="form-control" id="medicineType" name="medicineType" required>
+                                        <option value="">Select Type</option>
+                                        <option value="Tablet" {% if medicine.medicine_type == 'Tablet' %} selected {% endif %}>Tablet</option>
+                                        <option value="Capsule" {% if medicine.medicine_type == 'Capsule' %} selected {% endif %}>Capsule</option>
+                                        <option value="Liquid" {% if medicine.medicine_type == 'Liquid' %} selected {% endif %}>Liquid</option>
+                                        <option value="Injection" {% if medicine.medicine_type == 'Injection' %} selected {% endif %}>Injection</option>
+                                        <option value="Ointment" {% if medicine.medicine_type == 'Ointment' %} selected {% endif %}>Ointment</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="medicinePrice">Medicine Price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">₹</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="medicinePrice" name="medicinePrice" value="{{ medicine.medicine_price }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="medicineDescription">Medicine Description</label>
+                                    <textarea class="form-control" id="medicineDescription" name="medicineDescription" rows="1">{{ medicine.medicine_description }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="stockSize">Stock Size</label>
+                                    <select class="form-control" id="stockSize" name="stockSize" required>
+                                        <option value="">Select Stock Size</option>
+                                        <option value="10" {% if medicine.stock_size == 10 %} selected {% endif %}>10</option>
+                                        <option value="20" {% if medicine.stock_size == 20 %} selected {% endif %}>20</option>
+                                        <option value="30" {% if medicine.stock_size == 30 %} selected {% endif %}>30</option>
+                                        <option value="40" {% if medicine.stock_size == 40 %} selected {% endif %}>40</option>
+                                        <option value="50" {% if medicine.stock_size == 50 %} selected {% endif %}>50</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="medicineImage">Medicine Image</label>
+                                    <input type="file" class="form-control-file" id="medicineImage" name="medicineImage" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger btn-block col-4 mx-auto d-block">Update</button>
+            </form>
+            
+            
+            
+            
+        </section>
+        
+        
+    </main><!-- End #main -->
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% if messages %}              
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+        title: "Warning!",
+        text: "{{message}}",
+        icon: "warning",
+        button: "OK",
+    });
+</script>
+
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>swal({
+    title: "Info :)",
+    text: "{{message}}",
+    icon: "info",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "Error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+    title: "Success :)",
+    text: "{{message}}",
+    icon: "success",
+    button: "OK",
+});
+</script>
+{% endif %}              
+{% endfor %} 
+{% endif %}
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>Codebook</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+        Designed by <a href="https://codebook.in" target="_blank">Codebook</a>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'hospital/vendor/apexcharts/apexcharts.min.js' %}"></script>
+<script src="{% static 'hospital/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'hospital/vendor/chart.js/chart.umd.js' %}"></script>
+<script src="{% static 'hospital/vendor/echarts/echarts.min.js' %}"></script>
+<script src="{% static 'hospital/vendor/quill/quill.min.js' %}"></script>
+<script src="{% static 'hospital/vendor/simple-datatables/simple-datatables.js' %}"></script>
+<script src="{% static 'hospital/vendor/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'hospital/vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'hospital/js/main.js' %}"></script>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>
+    swal({
+        title: "Warning!",
+        text: "{{ message }}",
+        icon: "warning",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>
+    swal({
+        title: "Info :)",
+        text: "{{ message }}",
+        icon: "info",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>
+    swal({
+        title: "Error :)",
+        text: "{{ message }}",
+        icon: "error",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>
+    swal({
+        title: "Success :)",
+        text: "{{ message }}",
+        icon: "success",
+        button: "OK",
+    });
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</html>

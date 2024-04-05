@@ -1,0 +1,758 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MediEthiCare </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'user/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+    <style>
+
+.custom-modal-content {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .custom-modal-body {
+            padding: 30px;
+        }
+        
+        .custom-form-label {
+            color: #007bff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .custom-form-control {
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 16px;
+            color: #495057;
+        }
+        
+        .custom-btn-primary {
+            border-radius: 15px;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 16px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .custom-btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Animation for modal */
+        .custom-modal.fade .custom-modal-dialog {
+            transform: scale(0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .custom-modal.fade.show .custom-modal-dialog {
+            transform: scale(1);
+        }
+
+        
+        
+        ul, li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .center-heading {
+          text-align: center;
+        }
+        
+        .center-heading .section-title {
+          font-weight: 400;
+          font-size: 28px;
+          color: #3B566E;
+          letter-spacing: 1.75px;
+          line-height: 38px;
+          margin-bottom: 20px;
+        }
+        
+        .center-heading.colored .section-title {
+          color: #ffffff;
+        }
+        
+        .center-text {
+          text-align: center;
+          font-weight: 400;
+          font-size: 16px;
+          color: #6F8BA4;
+          line-height: 28px;
+          letter-spacing: 1px;
+          margin-bottom: 50px;
+        }
+        
+        .center-text.colored {
+          color: #c0d5ff;
+        }
+        
+        .center-text p {
+          margin-bottom: 30px;
+        }
+        
+        .pricing-item {
+          background: #FFFFFF;
+          box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.13);
+          border-radius: 5px;
+          margin-bottom: 30px;
+          margin-top: 20px;
+        }
+        
+        .pricing-item.active .pricing-header {
+          position: relative;
+        }
+        
+        .pricing-item.active .pricing-header .pricing-title {
+          color: #fff;
+        }
+        
+        .pricing-item.active .pricing-body .price-wrapper {
+          background-image: linear-gradient(135deg, #3d81e7 0%, #3d9bde 100%);
+        }
+        
+        .pricing-item.active .pricing-body .price-wrapper .currency {
+          color: #fff;
+        }
+        
+        .pricing-item.active .pricing-body .price-wrapper .price {
+          color: #fff;
+        }
+        
+        .pricing-item.active .pricing-body .price-wrapper .period {
+          color: #fff;
+        }
+        
+        .pricing-item .pricing-header {
+          text-align: center;
+          display: block;
+          position: relative;
+          padding-bottom: 10px;
+        }
+        
+        .pricing-item .pricing-header .pricing-title {
+          font-weight: 400;
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: #fff;
+          position: absolute;
+          width: 180px;
+          height: 40px;
+          line-height: 40px;
+          left: 0px;
+          right: 0px;
+          margin: auto;
+          top: -20px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          background-image: linear-gradient(135deg, #3d84e7 0%, #3dded3 100%);
+        }
+        
+        .pricing-item .pricing-body {
+          margin-bottom: 40px;
+        }
+        
+        .pricing-item .pricing-body .price-wrapper {
+          text-align: center;
+          margin-top: 40px;
+          margin-bottom: 30px;
+          padding-top: 10px;
+          background: #f6f6f6;
+        }
+        
+        .pricing-item .pricing-body .price-wrapper .currency {
+          height: 47px;
+          font-weight: 600;
+          font-size: 20px;
+          color: #3d3de6;
+          position: relative;
+          top: -15px;
+        }
+        
+        .pricing-item .pricing-body .price-wrapper .price {
+          font-weight: 700;
+          font-size: 34px;
+          color: #e64b3d;
+          letter-spacing: 2.12px;
+        }
+        
+        .pricing-item .pricing-body .price-wrapper .period {
+          font-weight: 700;
+          font-size: 14px;
+          color: #e64b3d;
+          letter-spacing: 0.88px;
+        }
+        
+        .pricing-item .pricing-body .list li {
+          text-align: center;
+          margin-bottom: 12px;
+          font-weight: 400;
+          font-size: 14px;
+          color: #CCDCEA;
+          letter-spacing: 0.88px;
+          text-decoration: line-through;
+        }
+        
+        .pricing-item .pricing-body .list li.active {
+          color: #3B566E;
+          text-decoration: none;
+        }
+        
+        .pricing-item .pricing-footer {
+          text-align: center;
+        }
+        
+        .btn-primary-line {
+            width: 160px;
+            margin: auto;
+            display: inline-block;
+            height: 44px;
+            line-height: 45px;
+            text-align: center;
+            border: none;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 12px;
+            color: #fff;
+            letter-spacing: 0.75px;
+            text-transform: uppercase;
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+            outline: none !important;
+            cursor: pointer;
+            text-decoration: none !important;
+            position: relative;
+        }
+        .pricing-item .pricing-footer .btn-primary-line {
+          border: 1px solid #e64b3d;
+          color: #e64b3d;
+          height: 36px;
+          line-height: 36px;
+        }
+        
+        .pricing-item .pricing-footer .btn-primary-line:hover {
+          background: #e64b3d;
+          color: #fff;
+        }
+
+
+
+        .accordion-button {
+        background-color: #2b89e7;
+        color: #f3f0f0;
+        border: none;
+        border-radius: 5px;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .accordion-button:hover {
+        background-color: #121315;
+    }
+
+    .accordion-body {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px 20px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion-body p {
+        margin-bottom: 10px;
+    }
+
+    .accordion-item:not(:last-child) {
+        border-bottom: 1px solid #3c90e5;
+    }
+
+    .accordion-item:last-child .accordion-body {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .accordion-item:first-child .accordion-body {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .accordion-button:focus {
+        outline: none;
+        box-shadow: none;
+        
+    }
+
+    .accordion-button .plus,
+    .accordion-button .minus {
+        margin-right: 10px;
+    }
+
+    .accordion-button .minus {
+        display: none;
+    }
+
+    .accordion-item.active .accordion-button .plus {
+        display: none;
+    }
+
+    .accordion-item.active .accordion-button .minus {
+        display: inline-block;
+    }
+
+    .accordion-item.active .accordion-button {
+        background-color: #e9ecef;
+    }
+    .shoppingbasket {
+        width:40px;
+        height:40px;
+        background-color:#000;
+        position:absolute;
+        top:10px;
+    }
+    .basketitems {
+        color:#fff;
+        font-size:80%;
+        background-color:#e74c3c;
+        position:absolute;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-90%);
+        -moz-transform:translate(-50%,-90%);
+        transform:translate(-50%,-90%);
+        padding:0 12%;
+        border-radius:1000px;
+    }
+    .shoppingbasket .top {
+        width:60%;
+        height:10%;
+        border-radius:1000px;
+        background-color:#fff;
+        position:absolute;
+        top:25%;
+        left:50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    .shoppingbasket .bottom {
+        width:50%;
+        height:10%;
+        border-radius:1000px;
+        background-color:#fff;
+        position:absolute;
+        bottom:25%;
+        left:50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    .shoppingbasket .left {
+        width:50%;
+        height:10%;
+        border-radius:1000px;
+        background-color:#fff;
+        position:absolute;
+        top:45%;
+        left:1%;
+        -webkit-transform: rotate(80deg);
+        -moz-transform: translateX(80deg);
+        transform: translateX(80deg);
+    }
+    .shoppingbasket .right {
+        width:50%;
+        height:10%;
+        border-radius:1000px;
+        background-color:#fff;
+        position:absolute;
+        top:45%;
+        right:1%;
+        -webkit-transform: rotate(-80deg);
+        -moz-transform: translateX(-80deg);
+        transform: translateX(-80deg);
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    
+    
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>Lb nagar, hyderabad , Telangana</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <a href="{% url 'cart' %}">
+                        <div class="shoppingbasket"> 
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <div class="basketitems">{{cart_count}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    
+    
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="{% url 'viewhospital' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>MediEthiCare </h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'viewhospital' %}" class="nav-item nav-link">Dashboard</a>
+                <a href="{% url 'pricing' %}" class="nav-item nav-link">Free Delivery&Cashback</a>
+                <a href="{% url 'faqs' %}" class="nav-item nav-link active">FAQ</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My account</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="{% url 'userprofile' %}" class="dropdown-item">My profile</a>
+                        <a href="{% url 'myappointments' %}" class="dropdown-item">My Appointments</a>
+                        <a href="{% url 'my_orders' %}" class="dropdown-item">My Orders</a>
+                        <a href="{% url 'medicine_recommendation' %}" class="dropdown-item">Find Alternative Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                Logout<i class="fa fa-arrow-right ms-3"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="col-lg-9 mx-auto mt-5">
+        <div class="content-title style1 mb-40">
+            <h2 style="text-decoration: underline;">Frequently Asked Queries</h2>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <span>
+                        <i class="las la-plus-circle plus"></i>
+                        <i class="las la-minus-circle minus"></i>
+                    </span>
+                    What are the visiting hours of your hospital?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="single-product-text">
+                        <p>Our hospital is open for visitors 24 hours a day, 7 days a week. However, specific visiting hours for patients may vary depending on their condition and the department they are admitted to. We recommend checking with our reception desk or consulting with the patient's healthcare provider for more information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more questions and answers here -->
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <span>
+                        <i class="las la-plus-circle plus"></i>
+                        <i class="las la-minus-circle minus"></i>
+                    </span>
+                    Do you offer telemedicine services?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="single-product-text">
+                        <p>Yes, we provide telemedicine services for patients who prefer remote consultations. You can schedule a virtual appointment with our healthcare professionals through our telemedicine platform. This convenient option allows you to receive medical advice and treatment recommendations from the comfort of your home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more questions and answers here -->
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <span>
+                        <i class="las la-plus-circle plus"></i>
+                        <i class="las la-minus-circle minus"></i>
+                    </span>
+                    Can I bring outside food for patients?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="single-product-text">
+                        <p>For the safety and well-being of our patients, we encourage them to consume food provided by our hospital's dietary services. However, we understand that some patients may have specific dietary needs or preferences. In such cases, please consult with the patient's healthcare provider or the nursing staff for approval to bring outside food.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more questions and answers here -->
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    <span>
+                        <i class="las la-plus-circle plus"></i>
+                        <i class="las la-minus-circle minus"></i>
+                    </span>
+                    How do I pay my hospital bill?
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="single-product-text">
+                        <p>We offer various payment options for settling your hospital bill. You can pay in person at our billing counter using cash, credit/debit cards, or other accepted payment methods. Additionally, we provide online payment facilities through our website or mobile app for added convenience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more questions and answers here -->
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    <span>
+                        <i class="las la-plus-circle plus"></i>
+                        <i class="las la-minus-circle minus"></i>
+                    </span>
+                    Can I request a second opinion from another doctor?
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="single-product-text">
+                        <p>Yes, you have the right to seek a second opinion from another qualified doctor. If you wish to obtain a second opinion, please inform your primary healthcare provider or the hospital's patient services department. We will assist you in arranging a consultation with another specialist for an independent assessment of your medical condition and treatment options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+
+
+
+
+    <div class="modal fade" id="emergencyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+            <div class="modal-content custom-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Emergency Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body custom-modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="patientName" class="custom-form-label">Patient Name</label>
+                            <input type="text" class="form-control custom-form-control" id="patientName" placeholder="Enter patient name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactNumber" class="custom-form-label">Contact Number</label>
+                            <input type="text" class="form-control custom-form-control" id="contactNumber" placeholder="Enter contact number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="custom-form-label">Location</label>
+                            <textarea class="form-control custom-form-control" id="location" rows="2" placeholder="Enter location"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn custom-btn-primary">Book Ambulance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <h5 class="text-light mb-4">Address</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Nambur</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 000000</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>CSM</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-light mb-4">Services</h5>
+                    <a class="btn btn-link" href="{% url 'medicine_compare' %}">Medicines</a>
+                    <a class="btn btn-link" href="{% url 'appointment' %}">Appointments</a>
+                    <a class="btn btn-link" href="{% url 'bed_availity' %}">Bed Availability</a>
+                    <a class="btn btn-link" href="{% url 'emergencyservices' %}">Emergency Services</a>
+                    <a class="btn btn-link" href="{% url 'surgicalservices' %}">Surgical Services</a>
+                    <a class="btn btn-link" href="{% url 'diagnosticservices' %}">Diagnostic Services</a>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-light mb-4">Quick Links</h5>
+                    <a class="btn btn-link" href="{% url 'viewhospital' %}">Dashboard</a>
+                    <a class="btn btn-link" href="{% url 'pricing' %}">FREE DELIVERY&CASHBACK</a>
+                    <a class="btn btn-link" href="{% url 'faqs' %}">FAQ</a>
+                    <a class="btn btn-link" href="{% url 'userprofile' %}">My Profile</a>
+                    <a class="btn btn-link" href="{% url 'myappointments' %}">My Appointments</a>
+                    <a class="btn btn-link" href="{% url 'my_orders' %}">My Orders</a>
+                    <a href="{% url 'medicine_recommendation' %}" class="dropdown-item">Find Alternative Medicines</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom"  target="_blank">CSM</a>, All Right Reserved.
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+<script>
+    $(document).ready(function () {
+        $('.btn-danger').click(function () {
+            $('#emergencyModal').modal('show');
+        });
+    });
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'user/lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'user/js/main.js' %}"></script>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>
+                swal({
+                    title: "Warning!",
+                    text: "{{ message }}",
+                    icon: "warning",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <script>
+                swal({
+                    title: "Info :)",
+                    text: "{{ message }}",
+                    icon: "info",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <script>
+                swal({
+                    title: "Error :)",
+                    text: "{{ message }}",
+                    icon: "error",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <script>
+                swal({
+                    title: "Success :)",
+                    text: "{{ message }}",
+                    icon: "success",
+                    button: "OK",
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</html>

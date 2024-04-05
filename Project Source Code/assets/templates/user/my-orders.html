@@ -1,0 +1,680 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MediEthiCare </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
+  
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+  
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="{% static 'user/lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'user/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+  <style>
+    
+    .card-custom {
+      background: #fff;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+      transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+      border: 0;
+      border-radius: 1rem;
+      padding:20px;
+    }
+    
+    .card-custom-img {
+      border-top-left-radius: calc(1rem - 1px);
+      border-top-right-radius: calc(1rem - 1px);
+    }
+    
+    .card-custom h5 {
+      overflow: hidden;
+      height: 56px;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+    
+    .card-custom-img-top {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      padding: 0px;
+    }
+    
+    .card-custom:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    }
+    
+    .label-top-custom {
+      position: absolute;
+      background-color: #8bc34a;
+      color: #fff;
+      top: 8px;
+      right: 8px;
+      padding: 5px 10px 5px 10px;
+      font-size: .7rem;
+      font-weight: 600;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    
+    .top-right-custom {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 1rem;
+      font-weight: 900;
+      background: #ff5722;
+      line-height: 90px;
+      text-align: center;
+      color: white;
+    }
+    
+    .top-right-custom span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    @media (max-width: 768px) {
+      .card-custom-img-top {
+        max-height: 250px;
+      }
+    }
+    
+    .over-bg-custom {
+      background: rgba(53, 53, 53, 0.85);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(0.0px);
+      -webkit-backdrop-filter: blur(0.0px);
+      border-radius: 10px;
+    }
+    
+    .btn-custom {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      padding: 5px 50px 5px 50px;
+    }
+    
+    .box-custom .btn-custom {
+      font-size: 1.5rem;
+    }
+    
+    @media (max-width: 1025px) {
+      .btn-custom {
+        padding: 5px 40px 5px 40px;
+      }
+    }
+    
+    @media (max-width: 250px) {
+      .btn-custom {
+        padding: 5px 30px 5px 30px;
+      }
+    }
+    
+    .btn-warning-custom {
+      background: none #f7810a;
+      color: #ffffff;
+      fill: #ffffff;
+      border: none;
+      text-decoration: none;
+      outline: 0;
+      box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25);
+      border-radius: 100px;
+    }
+    
+    .btn-warning-custom:hover {
+      background: none #ff962b;
+      color: #ffffff;
+      box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35);
+    }
+    
+    .bg-success-custom {
+      font-size: 1rem;
+      background-color: #f7810a !important;
+    }
+    
+    .bg-danger-custom {
+      font-size: 1rem;
+    }
+    
+    .price-hp-custom {
+      font-size: 1rem;
+      font-weight: 600;
+      color: darkgray;
+    }
+    
+    .amz-hp-custom {
+      font-size: .7rem;
+      font-weight: 600;
+      color: darkgray;
+    }
+    
+    .fa-question-circle-custom:before {
+      color: darkgray;
+    }
+    
+    .fa-plus-custom:before {
+      color: darkgray;
+    }
+    
+    .box-custom {
+      border-radius: 1rem;
+      background: #fff;
+      box-shadow: 0 6px 10px rgb(0 0 0 / 8%), 0 0 6px rgb(0 0 0 / 5%);
+      transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    }
+    
+    .box-img-custom {
+      max-width: 300px;
+    }
+    
+    .thumb-sec-custom {
+      max-width: 300px;
+    }
+    
+    @media (max-width: 576px) {
+      .box-img-custom {
+        max-width: 200px;
+      }
+      
+      .thumb-sec-custom {
+        max-width: 200px;
+      }
+    }
+    
+    .inner-gallery-custom {
+      width: 60px;
+      height: 60px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      margin: 1px;
+      display: inline-block;
+      overflow: hidden;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+    
+    @media (max-width: 370px) {
+      .box-custom .btn-custom {
+        padding: 5px 40px 5px 40px;
+        font-size: 1rem;
+      }
+    }
+    
+    .disclaimer-custom {
+      font-size: .9rem;
+      color: darkgray;
+    }
+    
+    .related-custom h3 {
+      font-weight: 900;
+    }
+    
+    footer-custom {
+      background: #212529;
+      height: 80px;
+      color: #fff;
+    }
+    
+    
+    .shoppingbasket {
+      width:40px;
+      height:40px;
+      background-color:#000;
+      position:absolute;
+      top:10px;
+    }
+    .basketitems {
+      color:#fff;
+      font-size:80%;
+      background-color:#e74c3c;
+      position:absolute;
+      top:50%;
+      left:50%;
+      -webkit-transform:translate(-50%,-90%);
+      -moz-transform:translate(-50%,-90%);
+      transform:translate(-50%,-90%);
+      padding:0 12%;
+      border-radius:1000px;
+    }
+    .shoppingbasket .top {
+      width:60%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      top:25%;
+      left:50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    .shoppingbasket .bottom {
+      width:50%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      bottom:25%;
+      left:50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    .shoppingbasket .left {
+      width:50%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      top:45%;
+      left:1%;
+      -webkit-transform: rotate(80deg);
+      -moz-transform: translateX(80deg);
+      transform: translateX(80deg);
+    }
+    .shoppingbasket .right {
+      width:50%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      top:45%;
+      right:1%;
+      -webkit-transform: rotate(-80deg);
+      -moz-transform: translateX(-80deg);
+      transform: translateX(-80deg);
+    }
+    .shoppingbasket {
+      width:40px;
+      height:40px;
+      background-color:#000;
+      position:absolute;
+      top:10px;
+    }
+    .basketitems {
+      color:#fff;
+      font-size:80%;
+      background-color:#e74c3c;
+      position:absolute;
+      top:50%;
+      left:50%;
+      -webkit-transform:translate(-50%,-90%);
+      -moz-transform:translate(-50%,-90%);
+      transform:translate(-50%,-90%);
+      padding:0 12%;
+      border-radius:1000px;
+    }
+    .shoppingbasket .top {
+      width:60%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      top:25%;
+      left:50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    .shoppingbasket .bottom {
+      width:50%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      bottom:25%;
+      left:50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+    .shoppingbasket .left {
+      width:50%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      top:45%;
+      left:1%;
+      -webkit-transform: rotate(80deg);
+      -moz-transform: translateX(80deg);
+      transform: translateX(80deg);
+    }
+    .shoppingbasket .right {
+      width:50%;
+      height:10%;
+      border-radius:1000px;
+      background-color:#fff;
+      position:absolute;
+      top:45%;
+      right:1%;
+      -webkit-transform: rotate(-80deg);
+      -moz-transform: translateX(-80deg);
+      transform: translateX(-80deg);
+    }
+    
+  </style>
+</head>
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <!-- Spinner End -->
+  
+  
+  <!-- Topbar Start -->
+  <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+    <div class="row gx-0 d-none d-lg-flex">
+      <div class="col-lg-7 px-5 text-start">
+        <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+          <small class="fa fa-map-marker-alt text-primary me-2"></small>
+          <small>Nambur</small>
+        </div>
+        <div class="h-100 d-inline-flex align-items-center py-3">
+          <small class="far fa-clock text-primary me-2"></small>
+          <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+        </div>
+      </div>
+      <div class="col-lg-5 px-5 text-end">
+        <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+          <a href="{% url 'cart' %}">
+            <div class="shoppingbasket"> 
+              <div class="top"></div>
+              <div class="bottom"></div>
+              <div class="left"></div>
+              <div class="right"></div>
+              <div class="basketitems">{{cart_count}}</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Topbar End -->
+  
+  
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+    <a href="{% url 'viewhospital' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>MediEthiCare </h1>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto p-4 p-lg-0">
+        <a href="{% url 'viewhospital' %}" class="nav-item nav-link ">Dashboard</a>
+        <a href="{% url 'pricing' %}" class="nav-item nav-link">Free Delivery&Cashback</a>
+        <a href="{% url 'faqs' %}" class="nav-item nav-link">FAQ</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">My account</a>
+          <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+            <a href="{% url 'userprofile' %}" class="dropdown-item">My profile</a>
+            <a href="{% url 'myappointments' %}" class="dropdown-item">My Appointments</a>
+            <a href="{% url 'my_orders' %}" class="dropdown-item active">My Orders</a>
+            <a href="{% url 'medicine_recommendation' %}" class="dropdown-item">Find Alternative Medicines</a>
+          </div>
+        </div>
+      </div>
+      <a href="{% url 'logout' %}" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">
+        Logout<i class="fa fa-arrow-right ms-3"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+  {% if ordera_total is not None %}
+  <section class="h-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-10  col-xl-8">
+          <div class="card" style="border-radius: 10px;">
+            <div class="card-header px-4 py-3">
+              <h3 class="text-muted mb-0">My Orders</h3>
+              
+            </div>
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0" style="color: #a8729a;">Receipt</p>
+                {% comment %} <p class="small text-muted mb-0">Receipt Voucher : 1KAU9-84UIL</p> {% endcomment %}
+              </div>
+              {% for item in ordered_medicines_with_status %}
+              <div class="card shadow-0 border mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="{{ item.medicine.medicine_image.url }}" class="img-fluid" alt="{{ medicine.medicine_name }}">
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0">{{ item.medicine.medicine_name }}</p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">{{ item.medicine.medicine_type }}</p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">{{ item.medicine.hospital.hospital_name }}</p>
+                    </div>
+                    
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">₹{{ item.medicine.medicine_price }}/-</p>
+                    </div>
+                  </div>
+                  <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-md-2">
+                      <p class="text-muted mb-0 small">Track Order</p>
+                    </div>
+                    <div class="col-md-10">
+                      {% if item.hospital_status == 'delivered' %}
+                        <div class="progress" style="height: 6px; border-radius: 16px;">
+                            <div class="progress-bar" role="progressbar" style="width:100%; border-radius: 16px; background-color: green;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-around mb-1">
+                          <p class="text-muted mt-1 mb-0 small ms-xl-5" style="font-weight: bold;"> {{ item.hospital_status|title }}</p>
+                          <p class="text-muted mt-1 mb-0 small ms-xl-5 "><span style="font-size: 16px; font-weight: bolder;">Delivered</span> <img src="{% static 'user/img/l1.png' %}" class="img-fluid" alt=""></p>
+                        </div>
+                    {% else %}
+                        <div class="progress" style="height: 6px; border-radius: 16px;">
+                            <div class="progress-bar" role="progressbar" style="width:48%; border-radius: 16px; background-color: red;" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-around mb-1">
+                          <p class="text-muted mt-1 mb-0 small ms-xl-5" style="font-weight: bold;"> {{ item.hospital_status|title }}</p>
+                          <p class="text-muted mt-1 mb-0 small ms-xl-5 ">Pending <img src="{% static 'user/img/l2.png' %}" class="img-fluid" alt=""></p>
+                        </div>
+                    {% endif %}
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              
+              
+              
+              
+              <div class="d-flex justify-content-between pt-2">
+                <p class="fw-bold mb-0">Order Details</p>
+                <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> ₹{{total_sum}}/-</p>
+              </div>
+              
+              <div class="d-flex justify-content-between pt-2">
+                <p class="text-muted mb-0">Invoice Number : 788152</p>
+                <p class="text-muted mb-0"><span class="fw-bold me-4">Discount</span> ₹9/-</p>
+              </div>
+              
+              <div class="d-flex justify-content-between">
+                <p class="text-muted mb-0">Invoice Date : 22 Dec,2019</p>
+                <p class="text-muted mb-0"><span class="fw-bold me-4">GST 18%</span> ₹8/-</p>
+              </div>
+              
+              <div class="d-flex justify-content-between mb-5">
+                <p class="text-muted mb-0">Recepits Voucher : 18KU-62IIK</p>
+                <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span> Free</p>
+              </div>
+            </div>
+            <div class="card-header px-4 py-3">
+              <h5 class="text-muted mb-0 text-center ">Thanks for your Order, <span style="color: #a8729a;">Upender</span>!</h5>
+              
+            </div>
+            <div class="card-footer border-0 px-4 py-5"
+            style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
+              paid: <span class="h2 mb-0 ms-2"> ₹{{ordera_total}}/-</span></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% else %}
+  <div class="alert alert-info border border-danger shadow text-center col-7 mx-auto m-5 p-5">
+    <h1>Not Yet Ordered !</h1>
+  </div>
+  {% endif %}
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <h5 class="text-light mb-4">Address</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Nambur</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 000000</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>CSM</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-light mb-4">Services</h5>
+                <a class="btn btn-link" href="{% url 'medicine_compare' %}">Medicines</a>
+                <a class="btn btn-link" href="{% url 'appointment' %}">Appointments</a>
+                <a class="btn btn-link" href="{% url 'bed_availity' %}">Bed Availability</a>
+                <a class="btn btn-link" href="{% url 'emergencyservices' %}">Emergency Services</a>
+                <a class="btn btn-link" href="{% url 'surgicalservices' %}">Surgical Services</a>
+                <a class="btn btn-link" href="{% url 'diagnosticservices' %}">Diagnostic Services</a>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-light mb-4">Quick Links</h5>
+                <a class="btn btn-link" href="{% url 'viewhospital' %}">Dashboard</a>
+                <a class="btn btn-link" href="{% url 'pricing' %}">FREE DELIVERY&CASHBACK</a>
+                <a class="btn btn-link" href="{% url 'faqs' %}">FAQ</a>
+                <a class="btn btn-link" href="{% url 'userprofile' %}">My Profile</a>
+                <a class="btn btn-link" href="{% url 'myappointments' %}">My Appointments</a>
+                <a class="btn btn-link" href="{% url 'my_orders' %}">My Orders</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom"  target="_blank">CSM</a>, All Right Reserved.
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+<script>
+  $(document).ready(function () {
+    $('.btn-danger').click(function () {
+      $('#emergencyModal').modal('show');
+    });
+  });
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'user/lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'user/js/main.js' %}"></script>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<script>
+  swal({
+    title: "Warning!",
+    text: "{{ message }}",
+    icon: "warning",
+    button: "OK",
+  });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<script>
+  swal({
+    title: "Info :)",
+    text: "{{ message }}",
+    icon: "info",
+    button: "OK",
+  });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>
+  swal({
+    title: "Error :)",
+    text: "{{ message }}",
+    icon: "error",
+    button: "OK",
+  });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>
+  swal({
+    title: "Success :)",
+    text: "{{ message }}",
+    icon: "success",
+    button: "OK",
+  });
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</html>

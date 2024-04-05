@@ -1,0 +1,586 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MediEthiCare </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'user/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+    <style>
+         .custom-modal-content {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .custom-modal-body {
+            padding: 30px;
+        }
+        
+        .custom-form-label {
+            color: #007bff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .custom-form-control {
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 16px;
+            color: #495057;
+        }
+        
+        .custom-btn-primary {
+            border-radius: 15px;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 16px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .custom-btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Animation for modal */
+        .custom-modal.fade .custom-modal-dialog {
+            transform: scale(0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .custom-modal.fade.show .custom-modal-dialog {
+            transform: scale(1);
+        }
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .report-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+        
+        .report-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .incident-details {
+            display: none;
+        }
+        
+        .report-form-check-label {
+            margin-right: 20px;
+        }
+        
+        .report-btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+            color:#fff;
+        }
+        
+        .report-btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .report-form-control {
+            border-radius: 20px;
+        }
+        
+        .report-form-check-input {
+            margin-right: 10px;
+        }
+        
+        .report-form-check-label {
+            font-weight: normal;
+        }
+        
+        .report-form-check {
+            margin-bottom: 10px;
+        }
+        
+        #unethicalBehaviorDetails {
+            display: none;
+        }
+        
+        .report-label {
+            font-weight: bold;
+        }
+        
+        ::-webkit-file-upload-button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        ::-webkit-file-upload-button:hover {
+            background: #0056b3;
+        }
+        
+        .report-btn-primary:focus,
+        .report-btn-primary.focus {
+            box-shadow: none !important;
+        }
+        .custom-file-input {
+            color: transparent;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .custom-file-input::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        
+        .custom-file-input::before {
+            content: 'Select File';
+            color: #ffffff;
+            background-color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            padding: 8px 12px;
+            outline: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .custom-file-input:hover::before {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .custom-file-input:active::before {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .custom-file-label {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        /* Style for form label */
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .shoppingbasket {
+            width:40px;
+            height:40px;
+            background-color:#000;
+            position:absolute;
+            top:10px;
+        }
+        .basketitems {
+            color:#fff;
+            font-size:80%;
+            background-color:#e74c3c;
+            position:absolute;
+            top:50%;
+            left:50%;
+            -webkit-transform:translate(-50%,-90%);
+            -moz-transform:translate(-50%,-90%);
+            transform:translate(-50%,-90%);
+            padding:0 12%;
+            border-radius:1000px;
+        }
+        .shoppingbasket .top {
+            width:60%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:25%;
+            left:50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .shoppingbasket .bottom {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            bottom:25%;
+            left:50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .shoppingbasket .left {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:45%;
+            left:1%;
+            -webkit-transform: rotate(80deg);
+            -moz-transform: translateX(80deg);
+            transform: translateX(80deg);
+        }
+        .shoppingbasket .right {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:45%;
+            right:1%;
+            -webkit-transform: rotate(-80deg);
+            -moz-transform: translateX(-80deg);
+            transform: translateX(-80deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    
+    
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>Nambur</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <a href="{% url 'cart' %}">
+                        <div class="shoppingbasket"> 
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <div class="basketitems">{{cart_count}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    
+    
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="{% url 'viewhospital' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>MediEthiCare </h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'viewhospital' %}" class="nav-item nav-link active">Dashboard</a>
+                <a href="{% url 'pricing' %}" class="nav-item nav-link">Free Delivery&Cashback</a>
+                <a href="{% url 'faqs' %}" class="nav-item nav-link">FAQ</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My account</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="{% url 'userprofile' %}" class="dropdown-item">My profile</a>
+                        <a href="{% url 'myappointments' %}" class="dropdown-item">My Appointments</a>
+                        <a href="{% url 'my_orders' %}" class="dropdown-item">My Orders</a>
+                        <a href="{% url 'medicine_recommendation' %}" class="dropdown-item">Find Alternative Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                Logout<i class="fa fa-arrow-right ms-3"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    
+    <div class="modal fade" id="emergencyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-modal-dialog">
+            <div class="modal-content custom-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Emergency Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body custom-modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="patientName" class="custom-form-label">Patient Name</label>
+                            <input type="text" class="form-control custom-form-control" id="patientName" placeholder="Enter patient name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactNumber" class="custom-form-label">Contact Number</label>
+                            <input type="text" class="form-control custom-form-control" id="contactNumber" placeholder="Enter contact number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="custom-form-label">Location</label>
+                            <textarea class="form-control custom-form-control" id="location" rows="2" placeholder="Enter location"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn custom-btn-primary">Book Ambulance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Start -->
+    <!-- HTML -->
+   
+    <div class="report-container">
+        <h2 class="mb-4">Report Hospital Form</h2>
+        <form id="reportForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="report-form-group">
+                <label for="reportedHospital">Reported Hospital Name</label>
+                <input type="text" class="form-control report-form-control" id="reportedHospital" value="{{hopital_name}}" readonly>
+            </div>
+            <div class="report-form-group row">
+                <div class="col-12">
+                    <label for="appointmentDate">Appointment Date</label>
+                    <input type="date" class="form-control report-form-control" id="appointmentDate" name="appointmentDate" >
+                    <p class="px-3 p-0 m-0 mt-1" style="font-size: 10px; color: red;">*optional</p>
+                </div>
+            </div>
+            <div class="report-form-group">
+                <label for="incident">Select Incident</label>
+                <select class="form-control report-form-control" id="incident" onchange="showFields()" required>
+                    <option value="default">Select Incident</option>
+                    <option value="morePrice">Collecting More Price</option>
+                    <option value="cancelAppointment">Cancelling Appointment</option>
+                    <option value="servicesNotAvailable">Services Shown Not Available</option>
+                    <option value="unethicalBehavior">Unethical Behavior</option>
+                </select>
+            </div>
+            <div class="incident-details" id="uploadBill">
+                <label for="billUpload" class="form-label">Upload Bill</label>
+                <input type="file" class="form-control-file" id="billUpload" name="billUpload">
+            </div>
+            <div class="incident-details" id="cancellationReason">
+                <label>Did they provide a reason for cancellation?</label>
+                <div class="form-check">
+                    <input class="form-check-input report-form-check-input" type="radio" name="cancellationReason" id="reasonGivenYes" value="yes">
+                    <label class="form-check-label report-form-check-label" for="reasonGivenYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input report-form-check-input" type="radio" name="cancellationReason" id="reasonGivenNo" value="no">
+                    <label class="form-check-label report-form-check-label" for="reasonGivenNo">No</label>
+                </div>
+                <label>Did they inform you about the cancellation?</label>
+                <div class="form-check">
+                    <input class="form-check-input report-form-check-input" type="radio" name="cancellationInform" id="informYes" value="yes">
+                    <label class="form-check-label report-form-check-label" for="informYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input report-form-check-input" type="radio" name="cancellationInform" id="informNo" value="no">
+                    <label class="form-check-label report-form-check-label" for="informNo">No</label>
+                </div>
+            </div>
+            <div class="incident-details" id="unethicalBehaviorDetails">
+                <label for="staffName">Name of the Staff</label>
+                <input type="text" class="form-control report-form-control" id="staffName" placeholder="Enter Name of Staff Your Are Reporting" name="staffName">
+            </div>
+            <button type="submit" class="btn report-btn-primary col-6 d-block mx-auto mt-3">Submit</button>
+        </form>
+    </div>
+    
+    <script>
+        function showFields() {
+            var incident = document.getElementById('incident').value;
+            var uploadBill = document.getElementById('uploadBill');
+            var cancellationReason = document.getElementById('cancellationReason');
+            var unethicalBehaviorDetails = document.getElementById('unethicalBehaviorDetails');
+            
+            if (incident === 'morePrice') {
+                uploadBill.style.display = 'block';
+                cancellationReason.style.display = 'none';
+                unethicalBehaviorDetails.style.display = 'none';
+            } else if (incident === 'cancelAppointment') {
+                uploadBill.style.display = 'none';
+                cancellationReason.style.display = 'block';
+                unethicalBehaviorDetails.style.display = 'none';
+            } else if (incident === 'unethicalBehavior') {
+                uploadBill.style.display = 'none';
+                cancellationReason.style.display = 'none';
+                unethicalBehaviorDetails.style.display = 'block';
+            } else {
+                uploadBill.style.display = 'block';
+                cancellationReason.style.display = 'none';
+                unethicalBehaviorDetails.style.display = 'none';
+            }
+        }
+    </script>
+    
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <h5 class="text-light mb-4">Address</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Nambur</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 000000</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>CSM</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-light mb-4">Services</h5>
+                    <a class="btn btn-link" href="{% url 'medicine_compare' %}">Medicines</a>
+                    <a class="btn btn-link" href="{% url 'appointment' %}">Appointments</a>
+                    <a class="btn btn-link" href="{% url 'bed_availity' %}">Bed Availability</a>
+                    <a class="btn btn-link" href="{% url 'emergencyservices' %}">Emergency Services</a>
+                    <a class="btn btn-link" href="{% url 'surgicalservices' %}">Surgical Services</a>
+                    <a class="btn btn-link" href="{% url 'diagnosticservices' %}">Diagnostic Services</a>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-light mb-4">Quick Links</h5>
+                    <a class="btn btn-link" href="{% url 'viewhospital' %}">Dashboard</a>
+                    <a class="btn btn-link" href="{% url 'pricing' %}">FREE DELIVERY&CASHBACK</a>
+                    <a class="btn btn-link" href="{% url 'faqs' %}">FAQ</a>
+                    <a class="btn btn-link" href="{% url 'userprofile' %}">My Profile</a>
+                    <a class="btn btn-link" href="{% url 'myappointments' %}">My Appointments</a>
+                    <a class="btn btn-link" href="{% url 'my_orders' %}">My Orders</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" target="_blank">CSM</a>, All Right Reserved.
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+<script>
+    $(document).ready(function () {
+        $('.btn-danger').click(function () {
+            $('#emergencyModal').modal('show');
+        });
+    });
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'user/lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+<script src="{% static 'user/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'user/js/main.js' %}"></script>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>
+                swal({
+                    title: "Warning!",
+                    text: "{{ message }}",
+                    icon: "warning",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <script>
+                swal({
+                    title: "Info :)",
+                    text: "{{ message }}",
+                    icon: "info",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <script>
+                swal({
+                    title: "Error :)",
+                    text: "{{ message }}",
+                    icon: "error",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <script>
+                swal({
+                    title: "Success :)",
+                    text: "{{ message }}",
+                    icon: "success",
+                    button: "OK",
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</html>

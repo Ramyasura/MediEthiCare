@@ -1,0 +1,608 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MediEthiCare </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'user/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user/css/style.css' %}" rel="stylesheet">
+    <style>
+        
+        body .bbbootstrap {
+            background-image: url("{% static 'user/img/d10.jpg' %}") !important;
+            background-size: cover;
+            padding: 180px 0 30px 0;
+        }
+        
+        .bbbootstrap {
+            padding: 40px;
+            margin-bottom: 22px;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+            background-color: #2e9df7;
+            -webkit-box-shadow: 0 15px 15px -15px rgba(0, 0, 0, 0.25) inset, 0 -15px 15px -15px rgba(0, 0, 0, 0.25) inset;
+            box-shadow: 0 15px 15px -15px rgba(0, 0, 0, 0.25) inset, 0 -15px 15px -15px rgba(0, 0, 0, 0.25) inset;
+        }
+        
+        .bbbootstrap form {
+            position: relative;
+            width: 540px;
+            margin: 22px auto 0;
+        }
+        
+        span {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-weight: inherit;
+            font-style: inherit;
+            font-size: 100%;
+            font-family: inherit;
+            vertical-align: baseline;
+        }
+        
+        
+        .bbbootstrap form input[type="text"] {
+            padding: 15px 20px;
+            padding-right: 100px;
+            border-color: transparent;
+            border-radius: 4px;
+        }
+        input.InputBox{
+            font-family: "lucida grande", "Lucida Sans Unicode", tahoma, sans-serif;
+            color: #333;
+            font-size: 15px;
+            padding: 3px;
+            margin: 0;
+            width: 250px;
+            background: #fff;
+            border: 1px solid #999;
+            border: 1px solid rgba(0, 0, 0, 0.4);
+        }
+        
+        
+        input[type=text] {
+            box-sizing: border-box;
+        }
+        
+        .InputBox {
+            display: block;
+            width: 100% !important;
+            padding: 6px 12px;
+            font-size: 15px;
+            line-height: 22px;
+            border-radius: 4px;
+        }
+        
+        .bbbootstrap form input[type="submit"] {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            float: right;
+            padding: 10px 25px;
+        }
+        
+        body .Button, body .button {
+            background-color: #1268b3;
+            background-image: none;
+        }
+        
+        
+        input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+        
+        .Button, .Button:hover, .Button:focus, .Button:active {
+            text-shadow: none;
+            border-color: transparent;
+        }
+        
+        .Button {
+            display: inline-block;
+            padding: 6px 12px;
+            vertical-align: middle;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 22px;
+            text-transform: uppercase;
+            border: transparent solid 1px;
+            border-radius: 3px;
+            -webkit-transition: -webkit-box-shadow 50ms;
+            transition: -webkit-box-shadow 50ms;
+            -o-transition: box-shadow 50ms;
+            transition: box-shadow 50ms;
+            transition: box-shadow 50ms, -webkit-box-shadow 50ms;
+            -webkit-font-smoothing: inherit;
+            color: #fff;
+            background-color: #2e9df7;
+            background-repeat: repeat-x;
+            background-color: #38a2f7;
+            background-image: -webkit-linear-gradient(#38a2f7, #2498f7);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#38a2f7), to(#2498f7));
+            background-image: -o-linear-gradient(#38a2f7, #2498f7);
+            background-image: linear-gradient(#38a2f7, #2498f7);
+        }
+        
+        
+        .result-item {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            padding: 10px;
+        }
+        
+        .result-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.648);
+            border: 2px solid #6ff16f;
+        }
+        
+        .result-item img {
+            width: 100%;
+            height: 50px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .result-item .details {
+            padding: 20px;
+        }
+        
+        .result-item h6 {
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .result-item p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .result-item .badge-pill {
+            background-color: #007bff;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        
+        .result-item .btn-primary .btn-danger {
+            margin-top: 10px;
+            background-color: #007bff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .result-item .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .slide-up {
+            animation: slideUp 0.9s ease-in-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .shoppingbasket {
+            width:40px;
+            height:40px;
+            background-color:#000;
+            position:absolute;
+            top:10px;
+        }
+        .basketitems {
+            color:#fff;
+            font-size:80%;
+            background-color:#e74c3c;
+            position:absolute;
+            top:50%;
+            left:50%;
+            -webkit-transform:translate(-50%,-90%);
+            -moz-transform:translate(-50%,-90%);
+            transform:translate(-50%,-90%);
+            padding:0 12%;
+            border-radius:1000px;
+        }
+        .shoppingbasket .top {
+            width:60%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:25%;
+            left:50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .shoppingbasket .bottom {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            bottom:25%;
+            left:50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .shoppingbasket .left {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:45%;
+            left:1%;
+            -webkit-transform: rotate(80deg);
+            -moz-transform: translateX(80deg);
+            transform: translateX(80deg);
+        }
+        .shoppingbasket .right {
+            width:50%;
+            height:10%;
+            border-radius:1000px;
+            background-color:#fff;
+            position:absolute;
+            top:45%;
+            right:1%;
+            -webkit-transform: rotate(-80deg);
+            -moz-transform: translateX(-80deg);
+            transform: translateX(-80deg);
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    
+    
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>Nambur</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <a href="{% url 'cart' %}">
+                        <div class="shoppingbasket"> 
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <div class="basketitems">{{cart_count}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    
+    
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="{% url 'viewhospital' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>MediEthiCare </h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'viewhospital' %}" class="nav-item nav-link active">Dashboard</a>
+                <a href="{% url 'pricing' %}" class="nav-item nav-link">Free Delivery&Cashback</a>
+                <a href="{% url 'faqs' %}" class="nav-item nav-link">FAQ</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My account</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="{% url 'userprofile' %}" class="dropdown-item">My profile</a>
+                        <a href="{% url 'myappointments' %}" class="dropdown-item">My Appointments</a>
+                        <a href="{% url 'my_orders' %}" class="dropdown-item">My Orders</a>
+                        <a href="{% url 'medicine_recommendation' %}" class="dropdown-item">Find Alternative Medicines</a>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="btn btn-danger rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                Logout<i class="fa fa-arrow-right ms-3"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    
+    
+    <!-- Header Start -->
+    <!-- HTML -->
+    
+    <div class="bbbootstrap pt-5">
+        <div class="container">
+            <h3 class="text-center mb-5">Discover the Best Deals: Search Medicine, Compare Prices</h3>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                <input type="text" id="Form_Search" name="medicine_name" value="" placeholder="Search for Medicines...." role="searchbox" class="InputBox col-md-12" autocomplete="off" required>
+                <input type="submit" id="Form_Go" class="Button" value="Search">
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div id="searchResults" style="display: none;">
+            <h2>Search Results</h2>
+            {% if medicine_count > 0 %}
+            {% for medicine_info in hospitals_with_medicines|dictsort:"medicine_price" %}
+            <div class="result-item">
+                <div class="row align-items-center">
+                    <div class="col-md-1 d-flex justify-content-center align-items-center">
+                        <img src="{{ medicine_info.medicine_image }}" alt="{{ medicine_info.medicine_name }}">
+                    </div>
+                    <div class="col-md-2 d-flex flex-column justify-content-center">
+                        <h4 class="text-center">{{ medicine_info.medicine_name }}</h4>
+                    </div>
+                    <div class="col-md-2 d-flex flex-column justify-content-center">
+                        <p class="text-center"> {{ medicine_info.hospital_name }}</p>
+                        <p class="text-center" style="font-size: 12px;">{{ medicine_info.hospital_address }}</p>
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center align-items-center">
+                        <p class="text-center"><strong>Stock-size:</strong> {{ medicine_info.stock_size }}</p>
+                    </div>
+                    <div class="col-md-1 d-flex justify-content-center align-items-center">
+                        <p class="text-center"><strong>Price:</strong> ₹{{ medicine_info.medicine_price }}.00/-</p>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-center">
+                        {% if medicine_info.stock_size == 0 %}
+                        <p class="text-center text-danger" style="font-weight: bold;">Out of Stock</p>
+                        {% else %}
+                        <a href="{% url 'reporthospital' medicine_id=medicine_info.medicine_id %}" class="btn btn-sm btn-danger mx-2"><i class="fas fa-flag"></i> Report</a>
+                        <a href="{% url 'add_to_cart' medicine_id=medicine_info.medicine_id %}" class="btn btn-sm btn-primary mx-2"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+                        <a href="{% url 'blockchain' medicine_id=medicine_info.medicine_id %}" class="btn btn-sm btn-warning mx-2"><i class="fas fa-link"></i> Blockchain</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p style="font-size: 28px; color: red; text-align: center;">No medicines found with the name "{{ medicine_name }}".</p>
+            {% endif %}
+            
+        </div>
+    </div>
+    
+    <div id="initialContainer" class="container">
+        
+        {% if medicines is not None %}
+        {% if medicines %}
+        <h2 class="my-4 text-center">Search Results</h2>
+        <div class="alert alert-success col-7 mx-auto shadow">
+            <h4 class="text-center">Found <strong>{{ total_stock_size }}</strong> {{ medicine_name|title }} Medicines </h4>
+        </div>
+        <div class="text-center">
+            <button id="compareBtn" class="btn btn-lg btn-success d-inline-block mx-auto my-3">Compare Prices</button>
+        </div>
+        {% else %}
+        <p class="text-center lead my-5">No medicines found with the name "{{ medicine_name }}".</p>
+        {% endif %}
+        {% else %}
+        <p class="text-center lead mt-1 ">Search For Medicines....</p>
+        <img src="{% static 'user/img/d11.png' %}" alt="" style="width: 200px;" class="mx-auto d-block">
+        {% endif %}
+        
+        
+        
+        
+        <!-- {% if not medicines %}
+            <p class="text-center lead my-5">Search For Medicines....</p>
+            {% elif medicines.count == None %}
+            <p class="text-center lead my-5">No medicines found with the name "{{ medicine_name }}".</p>
+            {% else %}
+            <h2 class="my-4 text-center">Search Results</h2>
+            <div class="alert alert-success col-7 mx-auto shadow">
+                <h4 class="text-center">Found <strong>{{ total_stock_size }}</strong> {{ medicine_name|title }} Medicines </h4>
+            </div>
+            <div class="text-center">
+                <button id="compareBtn" class="btn btn-lg btn-success d-inline-block mx-auto my-3">Compare Prices</button>
+            </div>
+            {% endif %} -->
+        </div>
+        
+        <script>
+            // Get the button element
+            var compareBtn = document.getElementById("compareBtn");
+            // Get the searchResults container
+            var searchResults = document.getElementById("searchResults");
+            
+            // Add click event listener to the button
+            document.addEventListener("DOMContentLoaded", function() {
+                var compareBtn = document.getElementById("compareBtn");
+                var initialContainer = document.getElementById("initialContainer");
+                var searchResults = document.getElementById("searchResults");
+                
+                compareBtn.addEventListener("click", function() {
+                    initialContainer.style.display = "none";
+                    searchResults.style.display = "block";
+                    searchResults.classList.add("slide-up");
+                    compareBtn.style.display = "none";
+                });
+            });
+            
+        </script>
+        
+        
+        
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-4">
+                        <h5 class="text-light mb-4">Address</h5>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Nambur</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 000000</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>CSM</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="text-light mb-4">Services</h5>
+                        <a class="btn btn-link" href="{% url 'medicine_compare' %}">Medicines</a>
+                        <a class="btn btn-link" href="{% url 'appointment' %}">Appointments</a>
+                        <a class="btn btn-link" href="{% url 'bed_availity' %}">Bed Availability</a>
+                        <a class="btn btn-link" href="{% url 'emergencyservices' %}">Emergency Services</a>
+                        <a class="btn btn-link" href="{% url 'surgicalservices' %}">Surgical Services</a>
+                        <a class="btn btn-link" href="{% url 'diagnosticservices' %}">Diagnostic Services</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="text-light mb-4">Quick Links</h5>
+                        <a class="btn btn-link" href="{% url 'viewhospital' %}">Dashboard</a>
+                        <a class="btn btn-link" href="{% url 'pricing' %}">FREE DELIVERY&CASHBACK</a>
+                        <a class="btn btn-link" href="{% url 'faqs' %}">FAQ</a>
+                        <a class="btn btn-link" href="{% url 'userprofile' %}">My Profile</a>
+                        <a class="btn btn-link" href="{% url 'myappointments' %}">My Appointments</a>
+                        <a class="btn btn-link" href="{% url 'my_orders' %}">My Orders</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom"  target="_blank">CSM</a>, All Right Reserved.
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    
+    
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <script>
+        $(document).ready(function () {
+            $('.btn-danger').click(function () {
+                $('#emergencyModal').modal('show');
+            });
+        });
+    </script>
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'user/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'user/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'user/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'user/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'user/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'user/lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'user/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'user/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    
+    <!-- Template Javascript -->
+    <script src="{% static 'user/js/main.js' %}"></script>
+    
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <script>
+                swal({
+                    title: "Warning!",
+                    text: "{{ message }}",
+                    icon: "warning",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <script>
+                swal({
+                    title: "Info :)",
+                    text: "{{ message }}",
+                    icon: "info",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <script>
+                swal({
+                    title: "Error :)",
+                    text: "{{ message }}",
+                    icon: "error",
+                    button: "OK",
+                });
+            </script>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <script>
+                swal({
+                    title: "Success :)",
+                    text: "{{ message }}",
+                    icon: "success",
+                    button: "OK",
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</html>
